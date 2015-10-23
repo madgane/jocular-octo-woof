@@ -1,0 +1,484 @@
+%\documentclass[conference,final]{IEEEtran}
+\documentclass[onecolumn,draftcls,journal]{IEEEtran}
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+   \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+   \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+   \DeclareGraphicsExtensions{.pdf,.jpg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\usepackage[tight,footnotesize]{subfigure}
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+% work, it is a good idea to load it with the tight package option to reduce
+% the amount of white space around the subfigures. subfigure.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+% subfigure.sty has been superceeded by subfig.sty.
+
+
+
+\usepackage{caption}
+%\usepackage[font=footnotesize]{subfig}
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later 
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Documentation is contained in the stfloats.sty comments as well as in the
+% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+% does not allow \baselineskip to stretch. Authors submitting work to the
+% IEEE should note that IEEE rarely uses double column equations and
+% that authors should try to avoid such use. Do not be tempted to use the
+% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+% not format its papers in such ways.
+
+
+
+
+\usepackage[official]{eurosym}
+\usepackage{url}
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+
+\title{RF transceivers design for 5G}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+%\author{\IEEEauthorblockN{Alok Sethi}
+%\IEEEauthorblockA{University of Oulu\\
+%Oulu, Finland\\
+%Email: asethi@ee.oulu.fi}}
+
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% make the title area
+
+\maketitle
+\IEEEoverridecommandlockouts
+%\IEEEpubid{978-1-4799-3083-8/14/\$31.00˜\copyright˜2014 IEEE}
+
+%\begin{abstract}
+%%\boldmath
+%The self-interference (SI) channel in full duplex transceivers is investigated. The SI channel is measured using ultra wide-band antennas. Narrow-band measurement technique is used for the channel measurements so that spatial resolution of 4.3 cm is achieved. Measurements are done in a variety of locations including an anechoic chamber with different antenna orientation. Antennas are mounted on an old laptop frame. Coherence bandwidth of the SI channel is found to be varying between 1 MHz and 4 MHz, effectively making it a frequency selective channel. It is also observed that a major amount of power is transferred because of direct coupling between the antennas via the frame on which antennas are mounted.
+%
+%\IEEEkeywords Full duplex, Self-interference channel.
+%\end{abstract}
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+\vspace{-.9in}
+
+\IEEEpubidadjcol
+\section{Aim}
+\vspace{-.09in}
+The aim of this research is to design and develop new transceiver (TRx) architectures aimed towards the 5th generation of telecommunication systems. These next generation systems should be capable of operating over higher frequency bands with up to  500MHz wide channels, capable of delivering data rates in excess of 10Gbps while operating with modulation schemes as large as 256 QAM. Here, RF TRx refers to a combination of RF integrated circuits (RFIC) and discrete  components which translate the digital baseband signal to analog RF signal and vice-versa.
+%
+%joint RF and baseband cancellation mechanism for Full
+%Duplex (FD) transceivers in order to yield a
+%compact implementation that can be easily scaled to multi-antenna domain.
+\IEEEpubidadjcol
+\vspace{-.2in}
+\section{Background and Significance}
+\vspace{-.1in}
+There are enormous expectations from the next generation systems in terms of achievable data rates. To achieve higher data rates in both uplink and downlink directions, undoubtedly wider band channels are needed. Given the widening gap between the demand and availability of the usable spectrum, there are two possible ways to deal with this problem. One solution is to go for frequency carriers beyond 6GHz i.e., above currently utilized bands for mobile communications in consumer market. Another solution is to utilize the available spectrum more efficiently.
+
+At higher carrier frequencies it is easier to get a wider channel, furthermore, these frequency bands are relatively unused~\cite{Aziz2015}. Additional advantage of higher carrier frequency is smaller antennas. Since, the environmental path loss increases proportionally to the carrier frequency, more transmit power is needed to maintain the required signal-to-noise ratio (SNR). Thus, utilizing directive antenna arrays, a desirable SNR can be maintained without consuming exponentially high electrical power. One very straightforward way to utilize massive number of antennas is to provide a RF TRx for each antenna~\cite{Vieira2014}.  This architecture relies solely on the digital baseband processing while keeping the RF TRx very simple. This approach might be suitable for big base stations at lower carrier frequencies, however, it is extremely cost prohibitive because the RF TRx cost increases exponentially, as carrier frequency scales up; and that is due to the increase in the needed parallelism in each RF TRx to counteract the increasing losses. An approximate dual of this architecture is making multiple highly directive beams at RF\cite{Rebeiz15p30,Zihir15p2015} and allocate multiple beams to individual users in order to achieve capacity and data rate. In \cite{Rebeiz15p30}, a  phased array operating at frequencies higher than $60\text{GHz}$ with a beam-width of $5.5^{\circ} \text{to} 7.5^{\circ}$ was demonstrated and \cite{Zihir15p2015} unveiled a 256 element array operating at 60GHz with a beam-width of 6$^{\circ}$. Both of these designs are huge compared to other phased array solutions having relatively wider beam-width, with \cite{Zihir15p2015} occupying $\text{1740mm}^2$ of wafer area.
+Since these designs generate very narrow beams in analog domain, they will require a very complex digital baseband designs in order to track users, achieve capacity and mitigate fading. Furthermore, these proof-of-concepts are cost inefficient as they only provide one very narrow RF beam instead of multiple RF beams.
+%Since these designs take away all the degrees of freedom from digital domain, they will require a very complex digital baseband designs in order to track users, achieve capacity and mitigate fading. Furthermore, these proof-of-concepts are cost inefficient as they only provide one very narrow RF beam instead of multiple RF beams.
+
+ 
+A more realistic approach is to utilize smaller number of RF TRx while making them more intelligent and integrating them tightly with the digital baseband. This approach yields to an architecture named as hybrid beamforming  massive multiple-input-multiple-output (MIMO) system~\cite{Vook2014}. In a hybrid beamforming massive MIMO system, the main point of research is the interconnect between the antennas and the digital baseband. A fully controllable cross connected interconnect will provide the maximum degrees of freedom at the digital baseband, however, the complexity of the interconnect  increases exponentially with the number of baseband chains and antennas. Thus, a scalable partially connected interconnect needs to be designed, furthermore, digital precoder algorithms needs to be derived for the same.
+
+ %Current transmission systems separate the uplink and downlink transmissions either in time or frequency domain. One concept which can theoretically double the spectrum efficiency is full duplex (FD) transmission. 
+In order to utilize the available spectrum more efficiently full duplex (FD) transmission can be used. FD transmission means
+transmitting and receiving at the same time and at the same frequency channel.  
+%As a concept, FD transmission is a few decades old, however, the engineering challenges had kept it as a theoretical  concept until now. 
+The biggest challenge for FD communication in the wireless domain is to cancel the
+self-interference (SI) caused by the transmitted signal in order to successfully receive the desired signal, given the fact that the SI can be up to 90-120 dB stronger than the desired signal.
+% Furthermore, SI consists of both direct coupling and nearby reflections~\cite{sethi_tapio_juntti}.
+One of the first FD TRx by Choi {\it et al.}~\cite{Choi_Jain_Srinivasan_etal-10}, though a manually tuned system,   was a vital proof-of-concept of the feasibility of the concept. 
+%The former unveiled an antenna architecture for the SI cancellation and the latter presented their first FD transceiver. 
+%The transceivers were manually tuned systems, 
+%with a limited utility outside the lab environment. 
+%however, it was a vital proof-of-concept which proved the feasibility of the FD transceiver. 
+Recent works \cite{bharadia_katti,Durate_Sabharwal,sahai_patel_sabharwal}  on FD TRx have shown that designing a TRx with a single cancellation stage is not a viable option and multiple cancellation stages needs to be combined together with  the antenna cancellation stage being first and digital cancellation (DC) being last. 
+%All of these solutions are constructed using discreet components. 
+Few fully-integrated FD TRx are presented in ~\cite{Debaillie2014,Broek2015,Dinc2015,Zhou2015}. 
+%With the advancement in RF and digital techniques, it now seems plausible to transform this wonderful and
+%elegant concept to reality. 
+
+% For developing a robust FD transceiver, multiple
+%cancellation stages have to be combined together with the antenna cancellation stage being first and
+%digital cancellation (DC) being last. Furthermore, they cannot be independent of each other because the
+%requirements for the efficacy of one stage are interlinked with the performance of the preceding one.
+%One example of this interlinked dependency is the requirements of the DC stage. To enable effective DC, a robust estimate of the SI channel is needed, which
+%necessitates a minimum signal-to-noise ratio for the SI. This implies, if the DC stage is employed, the preceding cancellation stages should not completely eliminate the SI. 
+
+
+
+%Current state-of-art in FD communication is a $3 \times 3$ MIMO FD transceiver~\cite{bharadia_katti}, developed by the
+%researchers at Stanford University. For analog cancellation, their design uses a cascade of filters with a
+%total of 56 taps and for DC it uses a total of 485 taps. To compute the tap coefficients, a
+%joint training sequence is used. However, the complete cancellation stage is treated as a black box,
+%which in turn yields a substantial size increase making it unsuitable for a mobile form factor. One
+%reason for black box modeling technique is due to the presence of non-linearities in the transceiver,
+%specifically the power amplifiers and IQ imbalance. This reasoning yields a question that if the non-
+%linearities are modeled in a white box manner, thus, producing a parameterized model of the transmitter
+%stage, can a more compact and durable cancellation architecture be developed. 
+%
+%Furthermore, in the currently available FD implementations, each stage is tuned separately, thus, utilizing different training sequences and time slots. As different cancellation stages have interlinked requirements, it is logical to assume that jointly tuning the various cancellation stages might provide a better performance. Another requirement for the cancellation stages is their adaptability.  As the SI channel is  dynamic due to its wireless nature~\cite{sethi_tapio_juntti, sethi, everett_sahai_sabharwal}, cancellation stages need to be re-tuned after the channel coherence time.
+
+Given these two approaches, an obvious research question is how to efficiently  combine the spectrum efficiency of the FD transceivers with the hybrid beamforming MIMO solutions, thus yielding an integrated architecture capable of doing both.
+\IEEEpubidadjcol
+\vspace{-.2in}
+\section{ Objectives}
+\vspace{-.1in}
+The main goal is to design and build an integrated hybrid beamforming MIMO TRx with self-interference cancellation stage.
+%\begin{figure}[!t]
+%\centering
+%	\includegraphics[clip=true, height=.38\columnwidth, width=\columnwidth]{basic_arch}
+%	\caption{Proposed FD architecture.}
+%	\label{fig:basic_arch}
+%\end{figure}
+A more detailed list of objectives is as follows:
+\begin{itemize}
+%\item Design a digitally controlled analog baseband  architecture which is capable of performing analog beamforming and SI cancellation,
+\item Design and analyze a system level architecture combining hybrid beamforming MIMO and analog cancellation stages, 
+\item Implement the transmitter portion of the architecture,% and SI cancellation,
+\item Design a digital precoder for performing beamforming with the analog interconnect as one constraint,
+\item Design a digital cancellation stage incorporating a centralized controlling algorithm to exploit various degrees-of-freedom in the RF and analog cancellation stages.
+\end{itemize}
+
+%\begin{itemize}
+%\item Design a RF cancellation stage whose high level architecture is shown in Figure~\ref{fig:rf_canc},
+%\item Design an analog baseband cancellation stage whose high level architecture is shown in Figure~\ref{fig:abb_canc},
+%\item Analyze and parameterize the static SI channel between the transmitter and receiver,
+%\item Design a digital cancellation stage incorporating a centralized controlling algorithm to exploit various degrees-of-freedom in the RF and analog cancellation stages.
+%\end{itemize}
+
+
+%\begin{figure}[!t]
+%\centering
+%%\captionsetup{justification=centering}
+%	\includegraphics[clip=true, height=.5\columnwidth]{rf_canc}
+%	\caption{Architecture of the proposed RF cancellation stage.}
+%	\label{fig:rf_canc}
+%\end{figure}
+%
+%\begin{figure}[!t]
+%	\centering
+%	\includegraphics[clip=true, height=.4\columnwidth]{abb_canc}
+%	\caption{Architecture of the proposed analog baseband      cancellation stage.}
+%	\label{fig:abb_canc}
+%\end{figure}
+
+\IEEEpubidadjcol
+\vspace{-.2in}
+\section{Expected Results}
+\vspace{-.1in}
+\begin{itemize}
+%\item A controllable analog baseband stage with a tunable SI cancellation path. This stage is designed and simulated using circuit simulator. A conference paper is expected from the simulations,
+%\item An up-converter stage along with a SI cancellation path and a variable phase shifter will be designed and simulated using circuit simulators. A conference paper is expected from the simulation results,
+\item A system level architecture defining the interconnect of the hybrid beamforming MIMO TRx will be designed in the first phase. It will be extended to include the self-interference cancellation stages in the later phase. Multiple conference papers are expected from the simulation results,
+\item The transmitter portion of the architecture will be designed and simulated using circuit simulators. A conference paper is expected from the simulation results,
+\item The previously designed integrated blocks will be replicated in order to generate a MIMO transmitter chain. This design will be simulated and manufactured using a CMOS process. A journal paper is expected from the results of the manufactured transmitter,
+\item A digital precoder and a SI cancellation algorithm will be designed for the manufactured transmitter. The algorithms will be implemented in fixed point and will be tested with the transmitter. The algorithm along with  the simulated and actual results will yield a journal paper.
+\end{itemize}
+
+%\begin{itemize}
+%\item A tunable RF cancellation stage with a cancellation capability of about 60 dB. This includes the isolation provided by the circulator. The cancellation stage will be made using discrete surface mount components. A conference paper is expected from the implementation,
+%\item A tunable analog baseband cancellation stage with a  cancellation capability  of about 30 dB. This stage will be constructed using discrete components. A conference paper is expected from the implementation,
+%\item A parameterized model of the static channel between the transmit and receive chain including the non-linearities. A journal paper is expected from this activity,
+%\item A real-time FD physical layer. WARP boards, developed at Rice University, will be used for the implementation. A demonstration in a conference is expected,
+%\item A fixed point implementation of the controlling and tuning  algorithm in the FPGA. A conference paper which can be extended to a journal paper is expected from this activity,
+%\item The target bandwidth of the solution will be 40~MHz and transmitted power will be in the range of about 20~dBm. The complete integrated transceiver will be demonstrated in a conference. 
+%\end{itemize}
+
+\IEEEpubidadjcol
+\vspace{-.2in}
+\section{Methods}
+\vspace{-.1in}
+The work is an empirical research. It will consist of numerical simulations, circuit design,  hardware prototype building and  real-time tests. The tasks proceed in  the following order:
+\begin{itemize}
+\item Practical values for various parameters like carrier frequency, power levels, signal bandwidth, number of channels etcetera, will be fixed,
+\item Careful behavioral system simulations will be run to verify the  efficacy  and performance of the proposed cancellation stages and system architecture,
+\item Circuit level simulations will be used to verify the schematics against the results of behavioral simulations,
+\item Layout will be generated and verified against the circuit simulations in order to check the impact of parasitics,
+\item Integrated circuit implementation will be built  and tested.
+\end{itemize}
+
+
+% 
+% 
+% % %and additional IC design for the canceler stages
+%\begin{itemize}
+%\item Practical values for desired signal strengths and  expected values of the  SI  will be extracted from the  LTE specifications and previous research on FD transceivers,
+%\item Careful behavioral system simulations will be run to verify the  efficacy  of the proposed cancellation stages, both jointly and individually,
+%\item Circuit level simulations will be used to verify the schematics against the results of behavioral simulations. A detailed parameterized model of the cancellation stages will be derived,
+%\item A proof-of-concept canceler will be developed. It will consists  of a discrete RF canceler, an analog baseband canceling path, and    a digital baseband  canceler along with the corresponding signal generators,
+%\item  Performance of the built system will be  verified. Previously defined parametrized model will be verified and updated according to the actual behavior of the cancellation stages.
+%%\item  Based on the above experiments, requirements for an IC implementation will be derived,
+%%\item IC implementation will be built  and tested.
+%\end{itemize}
+
+\IEEEpubidadjcol
+\vspace{-.2in}
+\section{Schedule}
+\vspace{-.1in}
+During the first year, focus will be on the literature review and the behavioral simulations. Along with that, RF and analog baseband schematics will be developed. As the system architecture will be guided by both the behavioral simulations and circuit simulations, so system design and circuit design will happen in an iterative manner and this cycle will continue till first quarter of the second year. Once the system design is frozen, the rest of the second year will be used to meet the behavioral specifications by the schematics and once that is finished, final layout will be generated and design will be sent to the foundry for the tapeout.  During the third year, work will be done on the testing the implementation and designing the digital blocks. Furthermore, by the end of third year, the credit requirements for the doctoral studies will be fulfilled. First part of the fourth year will be utilized for the integration of the whole transceiver. The later half will be dedicated to finalizing the thesis and defense.
+
+%\IEEEpubidadjcol
+%\section{Resources}
+%WARP v3 boards will be used for the digital baseband.  It is assumed that WARP boards already available at the CWC will be used for this research activity. As the analog baseband cancellation stage needs access to the analog baseband signals, the on-board RF chains on the WARP board cannot be used. However, with FMC-RF-2X245~\cite{warpProject} board, it is possible to intercept the analog baseband signals. One  FMC-RF-2X245 board retails at \$2000~\cite{warp_mango}. 
+% Table~\ref{tab:cost} shows the approximate price of a few major discrete components. Printed circuit board (PCB) manufacturing costs has not been taken into account as the price varies with the complexity and size of the designed board. 
+% Signal generators, RF measurement equipment and other test equipment will also be needed for developing and debugging the cancellation stages.
+%\begin{table}[!t]
+%\begin{center}
+%  \caption{Costliest discrete components}
+%  \label{tab:cost}
+%  \begin{tabular}{| c | c | c | }
+%    \hline  \bf Component & \bf Quantity & \bf Price \\ \hline
+%    Vector multiplier (AD8341)  & 5 & \~{}20\euro{}   \\ \hline
+%   Baseband delay line (AD8120) &1 & \~{}50\euro{} \\ \hline
+%   Variable gain amplifier (AD8376) &2 & \~{}10\euro{} \\ \hline
+%  \end{tabular}
+%  \end{center}
+%\end{table}
+
+
+
+\bibliographystyle{IEEEtran}
+\vspace{-.2in}
+\bibliography{IEEEabrv,ref}
+
+
+\end{document}
+
+
