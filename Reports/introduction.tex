@@ -1,0 +1,71 @@
+\begin{figure}[ht]
+	\begin{center}
+		\includegraphics*[trim=10mm 50mm 65mm 5mm,width=100mm]{tx_architecture}
+	\end{center}
+	\caption{System architecture.}
+	\label{fig:sm}
+\end{figure}
+%\includegraphics[width=.8\textwidth,natwidth=297mm,natheight=210mm]{multi-bs-1.eps}
+
+$\text{N}_\text{A}$ is the number of antennas in a single analog beam steering blocks.
+
+Total number of transmit antennas is $\text{N}_\text{A}\times\text{N}_\text{RF}$
+
+Number of baseband  chains at the transmitter is $\text{N}_\text{RF}$. This is also equal to the number of analog beam steering blocks.
+
+Number of receive antennas is $\text{N}_\text{R}$
+
+$\text{W}$ is the DFT matrix
+
+$\text{E}_\text{F}$ is the analog precoder matrix in the frequency domain and $\text{E}$ is the analog precoder matrix in the time domain.
+
+$\text{P}$ is the digital precoder matrix
+
+$\text{H}$ is the received channel matrix of dimensions $\text{N}_\text{R} \times (\text{N}_\text{A}\times\text{N}_\text{RF})$
+
+$\text{X}$ is the transmitted data.
+
+$y$ is the received signal and $n$ is AWGN noise
+\begin{equation}
+y = \text{H}\text{E}_\text{F}\text{P}\text{X} + n. 
+\label{eq:y}
+\end{equation}
+
+Matrix E can be represented as a product of two matrices, a block diagonal and a square matrix. The block diagonal one represents the configuration of the analog beam sterring blocks and the square matrix represents the cross connections of the hybrid beamforming system.
+\begin{eqnarray}
+\text{E}_\text{F} &=& \text{W} \times \text{E} \\
+\text{E} &=& \text{E}_\text{BD} \times \text{E}_\text{S} \\
+\text{E}_\text{BD} &=& \begin{bmatrix}
+\begin{bmatrix} e^{j\phi_{1,1}}\\ e^{j\phi_{2,1}}\\ \vdots \\e^{j\phi_{\text{N}_\text{A},1}}\end{bmatrix} & 
+\begin{bmatrix} 0\\ 0\\ \vdots \\0\end{bmatrix} & \cdots & \begin{bmatrix} 0\\ 0\\ \vdots \\0\end{bmatrix} \\
+\begin{bmatrix} 0\\ 0\\ \vdots \\0\end{bmatrix} & \begin{bmatrix} e^{j\phi_{1,2}}\\ e^{j\phi_{2,2}}\\ \vdots \\e^{j\phi_{\text{N}_\text{A},2}}\end{bmatrix} & \cdots &
+\begin{bmatrix} 0\\ 0\\ \vdots \\0\end{bmatrix} \\
+ \vdots & \vdots & \ddots & \vdots  \\
+ \begin{bmatrix} 0\\ 0\\ \vdots \\0\end{bmatrix} &  \begin{bmatrix} 0\\ 0\\ \vdots \\0\end{bmatrix} &  \cdots & 
+ \begin{bmatrix} e^{j\phi_{1,\text{N}_\text{RF}}}\\ e^{j\phi_{2,\text{N}_\text{RF}}}\\ \vdots \\e^{j\phi_{\text{N}_\text{A},\text{N}_\text{RF}}}\end{bmatrix}
+\end{bmatrix} \\
+ \text{E}_\text{S} &=&
+\begin{bmatrix}
+\text{A}_{1,1}e^{j\theta_{1,1}} &  \cdots& \text{A}_{1,\text{N}_\text{RF}}e^{j\theta_{1,\text{N}_\text{RF}}} \\
+\text{A}_{2,1}e^{j\theta_{2,1}} &  \cdots &\text{A}_{2,\text{N}_\text{RF}}e^{j\theta_{2,\text{N}_\text{RF}}} \\
+&\ddots&\\
+\text{A}_{\text{N}_\text{RF},\text{N}_\text{RF}}e^{j\theta_{\text{N}_\text{RF},\text{N}_\text{RF}}} &  \cdots &\text{A}_{\text{N}_\text{RF},\text{N}_\text{RF}}e^{j\theta_{\text{N}_\text{RF},\text{N}_\text{RF}}} 
+\end{bmatrix}
+\end{eqnarray}
+
+$e^{j\phi_{m,n}}$ represents the phase shift provided by the $m_{th}$ phase shifter  in the $n_{th}$ analog beam steering block. $\text{A}_{p,n}$ and $\theta_{p,n}$ are respectively the gain and phase shift provided to the $p_{th}$ time domain data stream which is being transmitted by the $n_{th}$ analog beam steering block.
+
+Things to find out
+\begin{enumerate}
+	\item For a given E matrix, a P matrix which maximizes the sum rate,
+	\item Study the following topologies of $\text{E}_\text{S}$
+	\begin{enumerate}
+		\item A binary diagonal matrix,
+		\item binary bidiagonal matrix,
+		\item binary triangular matrix,
+		\item diagonal matrix,
+		\item bidiagonal matrix,
+		\item triangular matrix,
+		\item a fully connected matrix,
+	\end{enumerate}
+\end{enumerate}
